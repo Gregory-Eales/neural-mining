@@ -26,7 +26,6 @@ def get_block_hashes():
 			if l[0:len(url)] == url:
 				hashes.append(l[11:])
 
-	
 	return hashes
 
 
@@ -49,6 +48,7 @@ def load_block_hashes(path="./data/hashes.txt"):
 
 	return hashes
 
+
 def get_block_data(hashes):
 
 	data = {}
@@ -60,8 +60,18 @@ def get_block_data(hashes):
 
 	return data
 
-def save_block_data(data):
-	with open('data.txt', 'w') as file:
+
+def save_block_data(data, path='./data/data.txt'):
+	with open(path, 'w') as file:
 		json.dump(data, file)
+
+
+def load_block_data(path='./data/data.txt'):
+
+	with open(path, 'r') as file:
+		data = json.read(file)
+
+	return data
+
 
 	
