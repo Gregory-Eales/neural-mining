@@ -69,9 +69,13 @@ def save_block_data(data, path='./data/data.txt'):
 def load_block_data(path='./data/data.txt'):
 
 	with open(path, 'r') as file:
-		data = json.read(file)
+		data = json.load(file)
 
 	return data
+
+
+def generate_dataset(data):
+	pass
 
 
 	

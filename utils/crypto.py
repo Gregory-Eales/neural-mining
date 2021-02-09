@@ -2,7 +2,7 @@ import hashlib
 from hashlib import sha256
 from bitstring import BitArray
 from tqdm import tqdm
-#import torch
+import torch
 
 
 def get_header(block):
@@ -54,8 +54,24 @@ def get_binary(block):
 
 
 def generate_data(blocks):
+
+	x = []
+	y = []
 	
 	for i in tqdm(range(len(blocks))):
 
-		x, y = get_binary(blocks[i])
+		a, b = get_binary(blocks[i])
+
+		x.append(a)
+		y.append(b)
+
+	x = torch.Tensor(x).bool()
+	y = torch.Tensor(y).bool()
+
+	return x, y
+
+def save_tensors(x, y, path='./data/'):
+	torch.save(x, '{}x.pt'.format(path)) 
+	torch.save(y, '{}y.pt'.format(path))
+
 
